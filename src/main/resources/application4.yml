@@ -1,0 +1,34 @@
+
+saml:
+  external-files-names:
+    identity-provider:
+      certificate: ./src/main/resources/idp/saml.pre-producao.cer
+    service-provider:
+      private_key: ./src/main/resources/sp/private_key.der
+      certificate: ./src/main/resources/sp/certificate.crt
+  
+  attributes:
+    identity-provider:
+      attribute-items:
+        NomeCompleto:
+          name: Nome Completo
+          attr: http://interop.gov.pt/MDC/Cidadao/NomeCompleto
+          group: Cartão de Cidadão
+
+        NICCifrado:
+          name: Identificação Civil (Cifrada)
+          attr: http://interop.gov.pt/MDC/Cidadao/NICCifrado
+          group: Cartão de Cidadão
+        
+    service-provider:
+      login-request:
+        attribute-items:
+        - key: NIC
+        - key: NomeCompleto
+        
+      new-account-request:
+        - key: NomeCompleto
+        - key: NIC
+        
+          
+        

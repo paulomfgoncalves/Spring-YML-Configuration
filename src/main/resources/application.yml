@@ -1,0 +1,51 @@
+saml:
+  #we
+  service-provider:
+    privatekey-fullfilename: ./src/main/resources/sp/private_key.der
+    certificate-fullfilename: ./src/main/resources/sp/certificate.crt
+    audience: https://ind.millenniumbcp.pt
+ 
+    login-request:
+      attribute-key-list:
+        - 
+          key: NIC
+          is-required: yes
+        - 
+          key: NomeCompleto
+          is-required: yes
+        
+    new-account-request:
+      attribute-key-list:
+      - 
+        key: NomeCompleto
+        is-required: yes
+      - 
+        key: NIC
+        is-required: no
+      - 
+        key: Xpto
+        is-required: yes
+      - 
+        key: Xpto2
+        is-required: no
+        
+ 
+  #them  
+  identity-provider:
+    certificate-fullfilename: ./src/main/resources/idp/saml.pre-producao.cer
+    issuer: "https://autenticacao.cartaodecidadao.pt"
+    
+    attributes:
+      attribute-data-map:
+      
+        Cidadao-NomeCompleto:
+          name: Nome Completo
+          attr: http://interop.gov.pt/MDC/Cidadao/NomeCompleto
+          group: Cartão de Cidadão
+          
+        Cidadao-NIC:
+          name: Identificação Civil
+          attr: http://interop.gov.pt/MDC/Cidadao/NIC
+          group: Cartão de Cidadão
+          
+ 
