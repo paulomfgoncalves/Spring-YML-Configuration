@@ -9,23 +9,26 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
-import com.candal.example.config.YAMLConfig4.Attributes.IdentityProvider.AttributeItem;
-
 /*
- * 1-An item in yaml with value:
- * example file-name: xpto.txt
- * in java getters and setters must have same name of yaml names
+ * 1 - All nested class must be static 
+ * 
+ * 2 - For a entry in yaml like key/value:  file-name: "xpto.txt"
+ * the java getters and setters must have same name of yaml key
  * yaml: FileName, fileName, file-name, file_name
  * java: getFileName() , setFileName()
+ * 
+ * 3 - For a entry in yaml like group with fields: "service-provider"
+ * the name of var must be equal private XXServiceProvider serviceProvider = new XXServiceProvider();
+ * 
  * 
  */
 
 @Configuration
 @EnableConfigurationProperties
-@ConfigurationProperties("saml")
+@ConfigurationProperties("saml") //root node 
 public class YAMLConfig {
 
-	// root
+	// root childs
 	private ServiceProvider serviceProvider = new ServiceProvider();
 	private IdentityProvider identityProvider = new IdentityProvider();
 	private Security security = new Security();

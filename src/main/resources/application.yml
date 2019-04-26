@@ -1,9 +1,16 @@
 saml:
+
+  Security:
+    Oauth2:
+      Resource:
+        CheckTokenUri: "AnyURL"
+        UnprotectedEndpoints: "AnyUnprotectedEndpoints"
+
   #we
   service-provider:
     privatekey-fullfilename: ./src/main/resources/sp/private_key.der
     certificate-fullfilename: ./src/main/resources/sp/certificate.crt
-    audience: https://ind.millenniumbcp.pt
+    audience: https://bankSite.com
  
     login-request:
       attribute-key-list:
@@ -33,7 +40,7 @@ saml:
   #them  
   identity-provider:
     certificate-fullfilename: ./src/main/resources/idp/saml.pre-producao.cer
-    issuer: "https://autenticacao.cartaodecidadao.pt"
+    issuer: https://OtherBankSite.com
     
     attributes:
       attribute-data-map:
@@ -41,11 +48,20 @@ saml:
         Cidadao-NomeCompleto:
           name: Nome Completo
           attr: http://interop.gov.pt/MDC/Cidadao/NomeCompleto
-          group: Cartão de Cidadão
+          group: Cartao de Cidadao
           
         Cidadao-NIC:
           name: Identificação Civil
           attr: http://interop.gov.pt/MDC/Cidadao/NIC
-          group: Cartão de Cidadão
+          group: Cartao de Cidadao
           
+        Xpto:
+          name: Xpto Name
+          attr: http://interop.gov.pt/MDC/Cidadao/XPTO
+          group: Cartao de Cidadao
+ 
+        Xpto2:
+          name: Xpto2 Name
+          attr: http://interop.gov.pt/MDC/Cidadao/XPTO2
+          group: Cartao de Cidadao
  
